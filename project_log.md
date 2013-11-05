@@ -8,10 +8,7 @@ The homepage of the app will show brief description of the app, with a registrat
 
 The user's homepage is a list of the ideas.
 
-There is a simple input box at the top which will filter results as you type.
-
-commands can be entered into this input box:
-
+Keyboard shortcuts will filter results and trigger commands as you type.
 * create / new / add
 * share
 *
@@ -32,13 +29,13 @@ Javascript AJAX calls will be used to streamline the interface.
 
 1. I want to delete an idea.
 
-1. I want to tag an idea with a category.
+1. I want to tag an idea.
 
 1. I want to set a number priority on an idea.
 
-2. I want to type in the input and have ideas filtered.
+2. I want to type and have ideas filtered.
 
-2. I want to type in commands into the input.
+2. I want to type in commands.
 
 4. I want share ideas.
 
