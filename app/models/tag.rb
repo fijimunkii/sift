@@ -12,4 +12,9 @@
 
 class Tag < ActiveRecord::Base
 
+  attr_accessible :name, :user_id, :idea_id
+
+  belongs_to :user
+  belongs_to :idea
+
 end
