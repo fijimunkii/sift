@@ -6,24 +6,22 @@ class SessionController < ApplicationController
     @user = User.where(email: params[:email]).first
     if @user
       if @user.authenticate params[:password]
-        flash[:notice] = "You have successfully logged in #{@user.email}! "
         session[:user_id] = @user.id
-        respond_with # TODO create session
+        session[:email] = @user.email
+        render json: session
       else
-        flash[:error] = "Unfortunately you typed in the wrong password..."
-        respond_with #TODO flash error
+        error = { error: 'Incorrect Password' }
+        render json: error
       end
     else
-      flash[:error] = "Unfortunately, the email #{params[:email]} does not exist"
-
-      respond_with # TODO flash error
+      error = { error: "Unfortunately, the email #{params[:email]} does not exist" }
+      render json: error
     end
   end
 
   def destroy
-    flash[:notice] = "You have successfully logged out."
     session[:user_id] = nil
-    respond_with # TODO destroy session
+    respond_with session
   end
 
 end

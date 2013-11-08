@@ -1,0 +1,5 @@
+#login { display :none; }
+#logout { display: none; }
+#profile-link { display: none; margin: 0 20px 0 0;}
+#ideas { display: none; }
+#idea-form { float: right; display: none; }

@@ -1,5 +1,12 @@
 .header
-  / form for login
-  / how do i set session info via ajax
-  / create scripts for key events
-  / CRUD + Session via AJAX BABY
+  %form#login
+    %input#email-input{:placeholder => 'email..'}
+    %input#password-input{:type => 'password', :placeholder => 'password..'}
+    %input{:type => 'submit', :value => 'Login'}
+  %a#profile-link{:href => '#'}
+  %a#logout{:href => '#'} Logout
+  %form#idea-form
+    %input#idea-input{:placeholder => 'Add an idea..'}
+    %input{:type => 'submit'}
+
+#ideas
