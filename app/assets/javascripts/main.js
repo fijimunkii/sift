@@ -34,16 +34,28 @@ $(function() {
 
   function afterLogin() {
     getIdeas().done(function(data) {
-      console.log(data);
-      $('#ideas').fadeIn();
-      $('#idea-form').fadeIn();
-      $('#profile-link').html($.cookie('email')).fadeIn();
+      var $ideas = $('#ideas');
+      for (var i=0; i<data.length; i++) {
+        var $idea = $('<div>');
+        $idea.addClass('idea');
+        $idea.html(data[i].content);
+        $ideas.prepend($idea);
+      }
+      $('#profile-link').html($.cookie('email'));
+      $('#signup-link').fadeOut(500);
+      $('#login').fadeOut(500, function() {
+        $('#logout').fadeIn(500);
+        $('#ideas').fadeIn();
+        $('#idea-form').fadeIn();
+        $('#profile-link').fadeIn();
+      });
     });
   }
 
   function afterLogout() {
     $('#logout').fadeOut(500, function() {
       $('#login').fadeIn(500);
+      $('#signup-link').fadeIn(500);
     });
 
     $('#ideas').fadeOut(500, function() {
@@ -66,7 +78,7 @@ $(function() {
 
   // if no user_id in session, show login form
   if (!cookieId) {
-    $('#login').fadeIn(500);
+    afterLogout();
   } else {
     $('#logout').fadeIn(500, function() {
       afterLogin();
@@ -80,13 +92,9 @@ $(function() {
         loginData = { email: email, password: password };
 
     login(loginData).done(function(data) {
-      console.log(data);
       $.cookie('user_id', data.user_id, { expires: 7 });
       $.cookie('email', data.email, { expires: 7 });
-      $('#login').fadeOut(500, function() {
-        $('#logout').fadeIn(500);
-        afterLogin();
-      });
+      afterLogin();
     });
   });
 
@@ -107,8 +115,13 @@ $(function() {
         } };
 
     addIdea(ideaData).done(function(data) {
-      console.log(data);
-      // $('#ideas').append
+      $('#idea-input').val('');
+
+      var $ideas = $('#ideas'),
+          $idea = $('<div>');
+      $idea.addClass('idea');
+      $idea.html(data.content);
+      $ideas.prepend($idea);
     });
   });
 

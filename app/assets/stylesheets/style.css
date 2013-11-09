@@ -1,5 +1,14 @@
 #login { display :none; }
 #logout { display: none; }
+#signup-link { display: none; margin: 0 20px;}
 #profile-link { display: none; margin: 0 20px 0 0;}
 #ideas { display: none; }
 #idea-form { float: right; display: none; }
+
+.idea {
+  width: 500px;
+  max-width: 100%;
+  margin: 20px auto;
+  font-size: 30px;
+  text-align: center;
+}

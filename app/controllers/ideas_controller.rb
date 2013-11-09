@@ -7,7 +7,6 @@ class IdeasController < ApplicationController
   end
 
   def create
-    binding.pry
     @idea = Idea.create params[:idea]
     render json: @idea
   end
