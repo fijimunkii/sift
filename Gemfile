@@ -10,6 +10,8 @@ gem 'pg'
 gem 'haml-rails'
 gem 'thin'
 
+gem 'newrelic_rpm'
+
 group :development, :test do
   gem 'erb2haml'
   gem 'pry-rails'           # Causes rails console to open pry
