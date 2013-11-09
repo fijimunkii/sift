@@ -1,5 +1,13 @@
 $(function() {
 
+  function register(data) {
+    return $.ajax({
+      url: '/users',
+      type: 'POST',
+      data: data
+    });
+  }
+
   function login(data) {
     return $.ajax({
       url: '/login',
@@ -42,12 +50,18 @@ $(function() {
         $ideas.prepend($idea);
       }
       $('#profile-link').html($.cookie('email'));
-      $('#signup-link').fadeOut(500);
+      $('#intro').fadeOut(500);
       $('#login').fadeOut(500, function() {
         $('#logout').fadeIn(500);
-        $('#ideas').fadeIn();
-        $('#idea-form').fadeIn();
-        $('#profile-link').fadeIn();
+        $('#ideas').fadeIn(500);
+        $('#idea-form').fadeIn(500);
+        $('#profile-link').fadeIn(500, function() {
+          $('#register-email').val('');
+          $('#register-password').val('');
+          $('#login-email').val('');
+          $('#login-password').val('');
+          $('#register-password-confirmation').val('');
+        });
       });
     });
   }
@@ -55,7 +69,7 @@ $(function() {
   function afterLogout() {
     $('#logout').fadeOut(500, function() {
       $('#login').fadeIn(500);
-      $('#signup-link').fadeIn(500);
+      $('#intro').fadeIn(500);
     });
 
     $('#ideas').fadeOut(500, function() {
@@ -69,26 +83,24 @@ $(function() {
     });
   }
 
-  // create new session if non-existant
-  var cookieId = $.cookie('user_id') || '';
-  $.cookie('user_id', cookieId);
+  $('#register').on('submit', function(e) {
+    e.preventDefault();
+    var email = $('#register-email').val(),
+        password = $('#register-password').val(),
+        passwordConfirmation = $('#register-password-confirmation').val(),
+        registerData = { user: { email: email, password: password, password_confirmation: passwordConfirmation } };
 
-  var cookieEmail = $.cookie('email') || '';
-  $.cookie('email', cookieEmail);
-
-  // if no user_id in session, show login form
-  if (!cookieId) {
-    afterLogout();
-  } else {
-    $('#logout').fadeIn(500, function() {
+    register(registerData).done(function(data) {
+      $.cookie('user_id', data.id, { expires: 7 });
+      $.cookie('email', data.email, { expires: 7 });
       afterLogin();
     });
-  }
+  })
 
   $('#login').on('submit', function(e) {
     e.preventDefault();
-    var email = $('#email-input').val(),
-        password = $('#password-input').val(),
+    var email = $('#login-email').val(),
+        password = $('#login-password').val(),
         loginData = { email: email, password: password };
 
     login(loginData).done(function(data) {
@@ -125,6 +137,26 @@ $(function() {
     });
   });
 
+  $(document.body).on('mouseover', '.idea', function(e) {
+    $(this).addClass('hover');
+  }).on('mouseout', '.idea', function(e) {
+    $(this).removeClass('hover');
+  });
 
+  // create new session if non-existant
+  var cookieId = $.cookie('user_id') || '';
+  $.cookie('user_id', cookieId);
 
-});
+  var cookieEmail = $.cookie('email') || '';
+  $.cookie('email', cookieEmail);
+
+  // if no user_id in session, show login form
+  if (!cookieId) {
+    afterLogout();
+  } else {
+    $('#logout').fadeIn(500, function() {
+      afterLogin();
+    });
+  }
+
+}); // $.ready

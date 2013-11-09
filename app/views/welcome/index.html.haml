@@ -1,9 +1,8 @@
 .header
   %form#login
-    %input#email-input{:placeholder => 'email..'}
-    %input#password-input{:type => 'password', :placeholder => 'password..'}
+    %input#login-email{:placeholder => 'email..'}
+    %input#login-password{:type => 'password', :placeholder => 'password..'}
     %input{:type => 'submit', :value => 'Login'}
-  %a#signup-link{:href => '#'} Signup
   %a#profile-link{:href => '#'}
   %a#logout{:href => '#'} Logout
   %form#idea-form
@@ -11,3 +10,23 @@
     %input{:type => 'submit'}
 
 #ideas
+
+#intro
+  A free-flow of thoughts.
+  %br
+  %br
+  Keeping track of ideas should be intuitive.
+  %br
+  %br
+  Why tag and categorize when you can sift?
+  %br
+  %br
+  Sign up today! It's free.
+  %br
+  %br
+
+  %form#register
+    %input#register-email{:placeholder => 'Your Email..', :type => 'email'}
+    %input#register-password{:placeholder => 'Password..', :type => 'password'}
+    %input#register-password-confirmation{:placeholder => 'Password Confirmation..', :type => 'password'}
+    %input{:type => 'submit', :value => 'Register'}
