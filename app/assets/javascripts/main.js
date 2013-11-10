@@ -49,6 +49,7 @@ $(function() {
         $idea.html(data[i].content);
         $ideas.prepend($idea);
       }
+      $('#idea-input').val('');
       $('#profile-link').html($.cookie('email'));
       $('#intro').fadeOut(500);
       $('#login').fadeOut(500, function() {
@@ -141,6 +142,26 @@ $(function() {
     $(this).addClass('hover');
   }).on('mouseout', '.idea', function(e) {
     $(this).removeClass('hover');
+  });
+
+  function fnPreventBackspace(event){if (event.keyCode == 8) {return false;}}
+  function fnPreventBackspacePropagation(event){if(event.keyCode == 8){event.stopPropagation();}return true;}
+  $(document).on('keydown', function(e) {
+    fnPreventBackspace(e);
+    fnPreventBackspacePropagation(e);
+    if (e.keyCode == 8) {
+      e.preventDefault();
+      $('#idea-input').val(function(index, value) {
+        return value.substr(0,value.length-1);
+      });
+    } else {
+      $('#idea-input').focus();
+    }
+  });
+
+  $(document).on('keypress', function(e) {
+    fnPreventBackspace(e);
+    fnPreventBackspacePropagation(e);
   });
 
   // create new session if non-existant
