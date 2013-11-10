@@ -49,14 +49,21 @@ $(function() {
         $idea.html(data[i].content + '<i class=\'fa-trash-o\'></i>');
         $ideas.prepend($idea);
       }
+      // prepare user interface
       $('#idea-input').val('');
       $('#profile-link').html($.cookie('email'));
+
+      // fade out splash page
       $('#intro').fadeOut(500);
       $('#login').fadeOut(500, function() {
+
+        // load user interface
         $('#logout').fadeIn(500);
         $('#ideas').fadeIn(500);
         $('#idea-form').fadeIn(500);
         $('#profile-link').fadeIn(500, function() {
+
+          // reset pre-login inputs
           $('#register-email').val('');
           $('#register-password').val('');
           $('#login-email').val('');
