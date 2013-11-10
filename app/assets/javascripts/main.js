@@ -153,9 +153,8 @@ $(function() {
     fnPreventBackspacePropagation(e);
     if (e.keyCode == 8) {
       e.preventDefault();
-      $('#idea-input').val(function(index, value) {
-        return value.substr(0,value.length-1);
-      });
+      var curVal = document.activeElement.value;
+      document.activeElement.value = curVal.substr(0,curVal.length-1);
     } else {
       $('#idea-input').focus();
     }
