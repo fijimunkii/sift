@@ -12,6 +12,8 @@ gem 'thin'
 
 gem 'newrelic_rpm'
 
+gem 'font-awesome-rails'
+
 group :development, :test do
   gem 'erb2haml'
   gem 'pry-rails'           # Causes rails console to open pry

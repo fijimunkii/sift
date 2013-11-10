@@ -63,6 +63,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.2)
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
     haml (4.0.3)
       tilt
     haml-rails (0.4)
@@ -182,6 +184,7 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 3.2.1)
   erb2haml
+  font-awesome-rails
   haml-rails
   jquery-rails
   meta_request

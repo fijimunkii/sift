@@ -46,7 +46,7 @@ $(function() {
       for (var i=0; i<data.length; i++) {
         var $idea = $('<div>');
         $idea.addClass('idea');
-        $idea.html(data[i].content);
+        $idea.html(data[i].content + '<i class=\'fa-trash-o\'></i>');
         $ideas.prepend($idea);
       }
       $('#idea-input').val('');
@@ -133,15 +133,17 @@ $(function() {
       var $ideas = $('#ideas'),
           $idea = $('<div>');
       $idea.addClass('idea');
-      $idea.html(data.content);
+      $idea.html(data.content + '<i class=\'fa-trash-o\'></i>');
       $ideas.prepend($idea);
     });
   });
 
   $(document.body).on('mouseover', '.idea', function(e) {
     $(this).addClass('hover');
+    // .find('i').show();
   }).on('mouseout', '.idea', function(e) {
     $(this).removeClass('hover');
+    // .find('i').hide();
   });
 
   function fnPreventBackspace(event){if (event.keyCode == 8) {return false;}}
