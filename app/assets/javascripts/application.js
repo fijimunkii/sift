@@ -12,4 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require jquery.cookie
+//= require handlebars
+//= require underscore
+//= require backbone
+//= require jquery.cookie
+//= require idea
+//= require app
+//= require main
